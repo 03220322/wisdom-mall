@@ -1,0 +1,43 @@
+# 工作流名称
+name: Build and Deploy to GitHub Pages
+
+# 触发条件：推送到 main 分支时执行
+on:
+  push:
+    branches: [ master ]  
+
+# 执行的任务
+jobs:
+  build-and-deploy:
+    # 运行环境：Ubuntu 最新版
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤1：拉取 GitHub 仓库的代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 步骤2：安装 Node.js（指定版本，比如 16.x，适配 Vue 2）
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16' # Vue 2 推荐用 Node 16/18，避免高版本兼容问题
+          cache: 'npm' # 缓存 npm 依赖，加快构建速度
+
+      # 步骤3：安装项目依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 步骤4：运行构建命令，生成 dist 文件夹
+      - name: Build project
+        run: npm run build
+
+      # 步骤5：将 dist 文件夹部署到 gh-pages 分支
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # GitHub 自动生成的令牌，用于推送代码到 gh-pages 分支
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 部署的目录（即打包后的 dist 文件夹）
+          publish_dir: ./dist
+          # 部署的分支
+          publish_branch: gh-pages

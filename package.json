@@ -2,6 +2,7 @@
   "name": "wisdom-mall",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://03220322.github.io/wisdom-mall/",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
