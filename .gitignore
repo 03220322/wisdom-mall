@@ -1,3 +1,46 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.local
+.env.*.local
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+logs/*.log
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+/.temp
+/.cache
+/.parcel-cache
+public/static
+/.turbo
+/.pnp*
+/.yarn
+/.yarn/*
+/.history
+
+# Local build artifacts
+build/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore local VS Code settings
+.vscode/
+
+# Lock files
+package-lock.json
+yarn.lock
 .DS_Store
 node_modules
 /dist
